@@ -1,0 +1,454 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --saffron: #C8651B;
+    --saffron-light: #FDF0E6;
+    --saffron-mid: #E8894A;
+    --maroon: #7B1D1D;
+    --maroon-2: #A02525;
+    --green: #1A6B3A;
+    --green-light: #E8F5EE;
+    --cream: #FDFBF7;
+    --cream-2: #F5F1E8;
+    --cream-3: #EDE7D9;
+    --ink: #1A1610;
+    --ink-2: #4A4236;
+    --ink-3: #8A7E70;
+    --line: rgba(90,60,20,0.12);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+
+  /* NAV */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: var(--maroon); position: sticky; top: 0; z-index: 20; animation: fadeDown 0.5s ease both; }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-logo {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--cream); display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1px; border: 2px solid rgba(200,101,27,0.4);
+  }
+  .logo-slb { font-family: var(--serif); font-size: 13px; font-weight: 700; color: var(--maroon); letter-spacing: 0.5px; line-height: 1; }
+  .logo-line { width: 28px; height: 1.5px; background: var(--saffron); border-radius: 1px; }
+  .logo-pt { font-family: var(--sans); font-size: 7px; font-weight: 600; color: var(--saffron); letter-spacing: 0.15em; text-transform: uppercase; }
+  .nav-title { }
+  .nav-title-main { font-family: var(--serif); font-size: 16px; color: white; font-weight: 500; line-height: 1.2; }
+  .nav-title-sub { font-family: var(--sans); font-size: 10px; font-weight: 300; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: white; }
+  .nav-apply { background: var(--saffron); color: white; border: none; padding: 9px 22px; border-radius: 5px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .nav-apply:hover { opacity: 0.88; }
+
+  /* HERO */
+  .hero { background: var(--maroon); padding: 72px 48px 0; display: grid; grid-template-columns: 1fr 390px; gap: 48px; align-items: end; overflow: hidden; position: relative; }
+  .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--maroon) 0%, var(--saffron) 50%, #E8C84A 100%); }
+  .hero-content { padding-bottom: 64px; animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,101,27,0.2); border: 1px solid rgba(200,101,27,0.4); color: #F0A870; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; font-weight: 500; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 52px); line-height: 1.1; font-weight: 700; color: white; margin-bottom: 8px; }
+  .hero h1 em { font-style: italic; color: #F0A870; font-weight: 500; }
+  .hero-location { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.45); font-size: 13px; font-weight: 400; margin-bottom: 22px; }
+  .hero-location svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.62); line-height: 1.8; max-width: 430px; margin-bottom: 36px; font-weight: 300; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-saffron { background: var(--saffron); color: white; border: none; padding: 12px 28px; border-radius: 6px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .btn-saffron:hover { opacity: 0.88; }
+  .btn-outline { background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); padding: 12px 28px; border-radius: 6px; font-family: var(--sans); font-size: 14px; cursor: pointer; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); }
+
+  .hero-card { background: var(--cream); border-radius: 14px 14px 0 0; padding: 28px; animation: fadeUp 0.7s 0.2s ease both; box-shadow: 0 -8px 40px rgba(0,0,0,0.2); }
+  .hero-card-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; font-weight: 500; }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .stat-box { background: var(--cream-2); border-radius: 8px; padding: 14px; border: 1px solid var(--line); }
+  .stat-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--maroon); letter-spacing: -0.5px; }
+  .stat-desc { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .prog-item { margin-bottom: 12px; }
+  .prog-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-2); margin-bottom: 5px; }
+  .prog-bar { height: 5px; background: var(--cream-3); border-radius: 3px; overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 3px; background: var(--saffron); }
+  .prog-fill.green { background: var(--green); }
+
+  /* TRICOLOR STRIP */
+  .tricolor { height: 4px; display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .tc1 { background: #FF9933; }
+  .tc2 { background: white; }
+  .tc3 { background: #138808; }
+
+  /* STATS STRIP */
+  .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--cream-2); border-bottom: 1px solid var(--line); }
+  .stat-cell { padding: 24px 28px; border-right: 1px solid var(--line); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell-num { font-family: var(--serif); font-size: 30px; color: var(--maroon); font-weight: 700; letter-spacing: -0.5px; }
+  .stat-cell-label { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+
+  /* SECTION */
+  .section { padding: 64px 48px; }
+  .section-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--saffron); font-weight: 600; margin-bottom: 10px; }
+  .section-title { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); font-weight: 700; color: var(--maroon); letter-spacing: -0.3px; margin-bottom: 10px; line-height: 1.15; }
+  .section-sub { font-size: 15px; color: var(--ink-2); max-width: 500px; font-weight: 300; line-height: 1.75; margin-bottom: 40px; }
+
+  /* BPT PROGRAM FEATURE */
+  .bpt-feature {
+    background: var(--maroon); border-radius: 14px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 24px;
+  }
+  .bpt-left { padding: 40px; }
+  .bpt-badge { display: inline-block; background: rgba(200,101,27,0.25); border: 1px solid rgba(200,101,27,0.4); color: #F0A870; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; font-weight: 500; }
+  .bpt-title { font-family: var(--serif); font-size: 26px; color: white; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+  .bpt-desc { font-size: 14px; color: rgba(255,255,255,0.62); line-height: 1.75; font-weight: 300; margin-bottom: 24px; }
+  .bpt-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .bpt-pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); font-size: 12px; padding: 5px 12px; border-radius: 20px; }
+  .bpt-right { background: rgba(0,0,0,0.2); padding: 40px; }
+  .bpt-stat-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-weight: 500; }
+  .bpt-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .bpt-stat-row:last-child { border-bottom: none; }
+  .bpt-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .bpt-stat-val { font-size: 13px; font-weight: 600; color: white; }
+  .bpt-stat-val.accent { color: #F0A870; }
+
+  /* UPCOMING PROGRAMS */
+  .upcoming-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .upcoming-card { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: var(--cream); transition: border-color 0.2s; }
+  .upcoming-card:hover { border-color: var(--saffron); }
+  .uc-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin-bottom: 12px; }
+  .uc-title { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--maroon); margin-bottom: 6px; }
+  .uc-desc { font-size: 13px; color: var(--ink-2); font-weight: 300; line-height: 1.6; }
+  .uc-footer { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); }
+
+  /* MISSION */
+  .mission { background: var(--cream-2); padding: 64px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .mission h2 { font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); color: var(--maroon); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .mission p { font-size: 15px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 14px; }
+  .mission-values { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .val-item { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .val-icon { font-size: 18px; margin-bottom: 8px; }
+  .val-title { font-size: 13px; font-weight: 600; color: var(--maroon); margin-bottom: 4px; }
+  .val-desc { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 64px 48px; background: var(--saffron-light); }
+  .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .t-card { background: white; border-radius: 10px; padding: 26px; border: 1px solid rgba(200,101,27,0.15); }
+  .t-stars { color: var(--saffron); font-size: 12px; margin-bottom: 12px; letter-spacing: 2px; }
+  .t-quote { font-family: var(--serif); font-size: 15px; color: var(--maroon); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+  .t-author { display: flex; align-items: center; gap: 10px; }
+  .t-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--saffron-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--saffron); border: 1px solid rgba(200,101,27,0.2); }
+  .t-name { font-size: 13px; font-weight: 600; color: var(--maroon); }
+  .t-role { font-size: 11px; color: var(--ink-3); }
+
+  /* ADMISSIONS */
+  .admissions { padding: 64px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .steps { margin-top: 8px; }
+  .step { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: none; }
+  .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--maroon); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--maroon); margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--ink-2); font-weight: 300; line-height: 1.6; }
+  .deadline-card { background: var(--cream-2); border-radius: 10px; padding: 24px; border: 1px solid var(--line); }
+  .dl-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); font-weight: 600; margin-bottom: 16px; }
+  .dl-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .dl-row:last-child { border-bottom: none; }
+  .dl-label { font-size: 13px; color: var(--ink); }
+  .dl-date { font-size: 13px; font-weight: 600; color: var(--saffron); }
+  .fee-card { margin-top: 16px; background: var(--maroon); border-radius: 10px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .fee-label { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .fee-amount { font-family: var(--serif); font-size: 26px; color: white; font-weight: 700; }
+  .fee-note { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  /* CTA */
+  .cta-band { background: var(--saffron); padding: 52px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .cta-band h2 { font-family: var(--serif); font-size: 30px; color: white; font-weight: 700; max-width: 460px; line-height: 1.2; }
+  .cta-band-btns { display: flex; gap: 12px; }
+  .btn-white { background: white; color: var(--saffron); border: none; padding: 13px 28px; border-radius: 6px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .btn-white:hover { opacity: 0.9; }
+  .btn-outline-white { background: none; border: 1.5px solid rgba(255,255,255,0.5); color: white; padding: 13px 28px; border-radius: 6px; font-family: var(--sans); font-size: 14px; cursor: pointer; }
+
+  /* FOOTER */
+  footer { background: #2A0D0D; padding: 48px 48px 24px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .footer-logo-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--cream-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+  .fl-slb { font-family: var(--serif); font-size: 12px; font-weight: 700; color: var(--maroon); }
+  .fl-line { width: 24px; height: 1px; background: var(--saffron); }
+  .fl-pt { font-family: var(--sans); font-size: 6px; font-weight: 600; color: var(--saffron); letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-brand-name { font-family: var(--serif); font-size: 16px; color: white; font-weight: 500; }
+  .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.7; max-width: 220px; font-weight: 300; margin-bottom: 8px; }
+  .footer-location { font-size: 12px; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 5px; }
+  .footer-col-title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; font-weight: 600; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-accred { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <span class="logo-slb">SLB</span>
+      <div class="logo-line"></div>
+      <span class="logo-pt">Physio</span>
+    </div>
+    <div class="nav-title">
+      <div class="nav-title-main">SLB College of Physiotherapy</div>
+      <div class="nav-title-sub">Sambalpur, Odisha · Est. 2004</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Programs</a>
+    <a href="#">Admissions</a>
+    <a href="#">Research</a>
+    <a href="#">About</a>
+    <a href="#">Donate</a>
+  </div>
+  <button class="nav-apply">Apply Now</button>
+</nav>
+
+<!-- TRICOLOR ACCENT -->
+<div class="tricolor"><div class="tc1"></div><div class="tc2"></div><div class="tc3"></div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Non-Profit · Est. 2004 · Sambalpur</div>
+    <h1>Restoring movement,<br><em>transforming lives</em><br>in Odisha.</h1>
+    <div class="hero-location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Sambalpur, Odisha, India
+    </div>
+    <p class="hero-sub">SLB College of Physiotherapy is a non-profit institution dedicated to training skilled physiotherapists who serve the communities of Odisha and beyond — with accessible fees and a mission-first approach.</p>
+    <div class="hero-btns">
+      <button class="btn-saffron">Explore BPT Program</button>
+      <button class="btn-outline">Request Information</button>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-card-label">At a Glance</div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">96%</div><div class="stat-desc">Board exam pass rate</div></div>
+      <div class="stat-box"><div class="stat-num">₹1,000</div><div class="stat-desc">Application fee</div></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-label"><span>Clinical placement rate</span><span>100%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-label"><span>Board exam pass rate</span><span>96%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:96%"></div></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-label"><span>Graduates employed in 6 months</span><span>91%</span></div>
+      <div class="prog-bar"><div class="prog-fill green" style="width:91%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-cell"><div class="stat-cell-num">2004</div><div class="stat-cell-label">Year established</div></div>
+  <div class="stat-cell"><div class="stat-cell-num">4.5 yr</div><div class="stat-cell-label">BPT program duration</div></div>
+  <div class="stat-cell"><div class="stat-cell-num">96%</div><div class="stat-cell-label">Board exam pass rate</div></div>
+  <div class="stat-cell"><div class="stat-cell-num">20+</div><div class="stat-cell-label">Clinical partner hospitals</div></div>
+</div>
+
+<!-- PROGRAMS -->
+<div class="section">
+  <div class="section-tag">Academic Programs</div>
+  <div class="section-title">Our flagship degree.</div>
+  <p class="section-sub">Built on evidence-based practice and rooted in compassionate care — our BPT program is designed to produce job-ready physiotherapists from day one.</p>
+
+  <div class="bpt-feature">
+    <div class="bpt-left">
+      <div class="bpt-badge">Flagship Program</div>
+      <div class="bpt-title">Bachelor of Physiotherapy (BPT)</div>
+      <div class="bpt-desc">A comprehensive 4.5-year undergraduate program (4 years academic + 6 months compulsory internship) affiliated with Sambalpur University. Covers musculoskeletal, neurological, cardiopulmonary, and pediatric physiotherapy with extensive clinical exposure.</div>
+      <div class="bpt-pills">
+        <span class="bpt-pill">Musculoskeletal</span>
+        <span class="bpt-pill">Neurology</span>
+        <span class="bpt-pill">Cardiopulmonary</span>
+        <span class="bpt-pill">Pediatrics</span>
+        <span class="bpt-pill">Sports PT</span>
+        <span class="bpt-pill">Geriatrics</span>
+      </div>
+      <button class="btn-saffron" style="font-size:13px; padding:10px 22px;">View full curriculum →</button>
+    </div>
+    <div class="bpt-right">
+      <div class="bpt-stat-title">Program Details</div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Degree awarded</span><span class="bpt-stat-val">BPT</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Duration</span><span class="bpt-stat-val accent">4.5 years</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Internship</span><span class="bpt-stat-val">6 months (included)</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Intake</span><span class="bpt-stat-val">Annual · July/August</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Affiliation</span><span class="bpt-stat-val">Sambalpur University</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Pass rate</span><span class="bpt-stat-val accent">96%</span></div>
+      <div class="bpt-stat-row"><span class="bpt-stat-label">Application fee</span><span class="bpt-stat-val accent">₹1,000</span></div>
+    </div>
+  </div>
+
+  <div class="upcoming-grid">
+    <div class="upcoming-card">
+      <div class="uc-tag">Post-Graduate · Coming Soon</div>
+      <div class="uc-title">MPT — Master of Physiotherapy</div>
+      <div class="uc-desc">2-year postgraduate specializations in orthopedics, neurology, sports, and cardiopulmonary physiotherapy. Planned launch 2026.</div>
+      <div class="uc-footer">Expression of interest open · <span style="color:var(--saffron); cursor:pointer;">Register →</span></div>
+    </div>
+    <div class="upcoming-card">
+      <div class="uc-tag">Continuing Education</div>
+      <div class="uc-title">Workshops & Certificate Courses</div>
+      <div class="uc-desc">Short-term CEU programs for practicing physiotherapists in Odisha — manual therapy, electrotherapy, dry needling, and more.</div>
+      <div class="uc-footer">Flexible schedule · <span style="color:var(--saffron); cursor:pointer;">View calendar →</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<div class="mission">
+  <div>
+    <div class="section-tag">Our Mission</div>
+    <h2>Serving Odisha through accessible, quality physiotherapy education.</h2>
+    <p>Founded in 2004 in Sambalpur, SLB College of Physiotherapy was established with a single purpose — to make professional physiotherapy education accessible to students across Odisha, particularly those from rural and underserved backgrounds.</p>
+    <p>As a non-profit college, our surplus is reinvested into scholarships, infrastructure, and free community physiotherapy camps.</p>
+  </div>
+  <div class="mission-values">
+    <div class="val-item">
+      <div class="val-icon">🎯</div>
+      <div class="val-title">Accessibility</div>
+      <div class="val-desc">Affordable fees with merit and need-based scholarships</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon">🔬</div>
+      <div class="val-title">Evidence-based</div>
+      <div class="val-desc">Curriculum aligned with latest clinical guidelines</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon">🏥</div>
+      <div class="val-title">Community Care</div>
+      <div class="val-desc">Free physiotherapy camps across rural Odisha</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon">🏆</div>
+      <div class="val-title">Excellence</div>
+      <div class="val-desc">96% board pass rate since establishment</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="section-tag">Student Voices</div>
+  <div class="section-title" style="margin-bottom:32px;">What our students say.</div>
+  <div class="t-grid">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"SLB gave me the clinical confidence I needed. The faculty truly invest in each student's growth."</div>
+      <div class="t-author"><div class="t-avatar">PR</div><div><div class="t-name">Priya Rath</div><div class="t-role">BPT Graduate · 2022 · Bhubaneswar</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"Coming from a small town in Sambalpur district, the affordable fees made all the difference for my family."</div>
+      <div class="t-author"><div class="t-avatar">AM</div><div><div class="t-name">Aditya Mahapatra</div><div class="t-role">BPT Graduate · 2023 · Rourkela</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"The hospital internship placements were excellent. I was confident and job-ready from day one."</div>
+      <div class="t-author"><div class="t-avatar">SK</div><div><div class="t-name">Sunita Kumari</div><div class="t-role">BPT Graduate · 2023 · Cuttack</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMISSIONS -->
+<div class="admissions">
+  <div>
+    <div class="section-tag">Admissions</div>
+    <div class="section-title">How to apply.</div>
+    <p style="font-size:14px; color:var(--ink-2); font-weight:300; line-height:1.75; margin-bottom:24px;">Eligibility: 10+2 with Physics, Chemistry, Biology (PCB) and minimum 50% aggregate. Admission via state counselling or direct merit.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><div class="step-title">Check eligibility</div><div class="step-desc">10+2 with PCB, minimum 50% marks. Age 17+ at time of admission.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div><div class="step-title">Submit application</div><div class="step-desc">Apply online or in person. Pay ₹1,000 non-refundable application fee.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div><div class="step-title">Merit list & counselling</div><div class="step-desc">Admission based on 10+2 PCB marks via OJEE / direct college counselling.</div></div></div>
+      <div class="step"><div class="step-num">4</div><div><div class="step-title">Complete enrollment</div><div class="step-desc">Submit documents, pay tuition, and begin your journey at SLB.</div></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="deadline-card">
+      <div class="dl-title">Key Dates — Batch 2025–26</div>
+      <div class="dl-row"><span class="dl-label">Applications open</span><span class="dl-date">May 1, 2025</span></div>
+      <div class="dl-row"><span class="dl-label">Last date to apply</span><span class="dl-date">June 30, 2025</span></div>
+      <div class="dl-row"><span class="dl-label">Merit list published</span><span class="dl-date">July 10, 2025</span></div>
+      <div class="dl-row"><span class="dl-label">Counselling / interview</span><span class="dl-date">July 15–20, 2025</span></div>
+      <div class="dl-row"><span class="dl-label">Classes commence</span><span class="dl-date">August 1, 2025</span></div>
+    </div>
+    <div class="fee-card">
+      <div>
+        <div class="fee-label">Application Fee</div>
+        <div class="fee-amount">₹1,000</div>
+        <div class="fee-note">Non-refundable · Online & offline accepted</div>
+      </div>
+      <button class="btn-white" style="white-space:nowrap;">Apply Now</button>
+    </div>
+    <div style="margin-top:14px; padding:16px 20px; background:var(--green-light); border-radius:8px; border:1px solid rgba(26,107,58,0.15);">
+      <div style="font-size:13px; font-weight:600; color:var(--green); margin-bottom:4px;">Scholarships available</div>
+      <div style="font-size:13px; color:var(--ink-2); font-weight:300; line-height:1.6;">Merit and need-based scholarships for SC/ST/OBC students and top academic performers. <span style="color:var(--green); cursor:pointer;">Learn more →</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Start your career in physiotherapy at SLB, Sambalpur.</h2>
+  <div class="cta-band-btns">
+    <button class="btn-white">Apply for BPT 2025</button>
+    <button class="btn-outline-white">Contact Admissions</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-wrap">
+        <div class="footer-logo-icon">
+          <span class="fl-slb">SLB</span>
+          <div class="fl-line"></div>
+          <span class="fl-pt">Physio</span>
+        </div>
+        <div class="footer-brand-name">SLB College of Physiotherapy</div>
+      </div>
+      <div class="footer-brand-desc">A non-profit institution training compassionate physiotherapists to serve the communities of Odisha since 2004.</div>
+      <div class="footer-location">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Sambalpur, Odisha, India
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Academics</div>
+      <a href="#">BPT Program</a>
+      <a href="#">MPT (Upcoming)</a>
+      <a href="#">Continuing Ed</a>
+      <a href="#">Research</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Admissions</div>
+      <a href="#">How to Apply</a>
+      <a href="#">Eligibility</a>
+      <a href="#">Fee Structure</a>
+      <a href="#">Scholarships</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Institution</div>
+      <a href="#">About SLB</a>
+      <a href="#">Faculty</a>
+      <a href="#">Community Camps</a>
+      <a href="#">Donate</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 SLB College of Physiotherapy, Sambalpur. A non-profit institution.</div>
+    <div class="footer-accred">Affiliated to Sambalpur University · Approved by IAP</div>
+  </div>
+</footer>
